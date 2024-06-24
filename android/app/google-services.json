@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "631196759272",
+    "project_id": "careaiproject",
+    "storage_bucket": "careaiproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:631196759272:android:c325434eb553c4c082455d",
+        "android_client_info": {
+          "package_name": "com.example.careai"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2HIor50NBnXT3jF06iZMIdasylmKyUGc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
