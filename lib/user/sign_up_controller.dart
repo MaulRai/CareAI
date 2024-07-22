@@ -1,4 +1,6 @@
+import 'package:careai/homepage.dart';
 import 'package:careai/user/auth.dart';
+import 'package:careai/user/sign_in_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,6 +13,7 @@ class SignUpController extends GetxController {
   final phoneNo = TextEditingController();
 
   void registerUser(String email, String password){
+    Get.offAll(() => const HomePage());
     AuthenticationRepository.instance.createUserWithEmailAndPass(email, password);
   }
 }

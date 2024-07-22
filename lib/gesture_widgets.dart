@@ -1,12 +1,14 @@
 import 'package:careai/app_decoration.dart';
+import 'package:careai/user/sign_up_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-Widget appButton(String text, BuildContext context, bool isLogin) {
+Widget appButton(String text, BuildContext context, bool isLogin, {Function? loginHandle}) {
   return GestureDetector(
     onTap: () {
-      isLogin
-          ? "NOT IMPLEMENTED YET"
-          : Navigator.of(context).pushNamed("/signuppage");
+      (isLogin)
+          ? loginHandle!()
+          : Get.to(SignUpPage());
     },
     child: Container(
       margin: EdgeInsets.only(bottom: 15),

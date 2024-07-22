@@ -2,6 +2,7 @@ import 'package:careai/chat_page.dart';
 import 'package:careai/firebase_options.dart';
 import 'package:careai/homepage.dart';
 import 'package:careai/user/auth.dart';
+import 'package:careai/user/profile_page.dart';
 import 'package:careai/user/sign_in_page.dart';
 import 'package:careai/user/sign_up_page.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -12,7 +13,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
       .then((value) => Get.put(AuthenticationRepository()));
-  runApp(const MyApp());
+  runApp(const GetMaterialApp(home: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
       home: const HomePage(),
       routes: {
         '/homepage': (context) => const HomePage(),
+        '/profilepage': (context) => const ProfilePage(),
         '/chatpage': (context) => const ChatPage(),
         '/signinpage': (context) => const SignInPage(),
         '/signuppage': (context) => const SignUpPage(),

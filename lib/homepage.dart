@@ -1,4 +1,11 @@
+import 'package:careai/diagnose_page.dart';
+import 'package:careai/image_analyzer_page.dart';
+import 'package:careai/pseudo_speech_dart.dart';
+import 'package:careai/user/profile_page.dart';
+import 'package:careai/user/sign_in_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,6 +18,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body: Center(
         child: Stack(
           children: [
@@ -51,8 +59,11 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       IconButton(
-                        onPressed: () {
-                          Navigator.of(context).pushNamed("/signinpage");
+                        onPressed: () async {
+                          final user = FirebaseAuth.instance.currentUser;
+                          user == null
+                              ? Get.to(() => const SignInPage())
+                              : Get.to(() => const ProfilePage());
                         },
                         icon: Icon(
                           Icons.person,
@@ -103,19 +114,27 @@ class _HomePageState extends State<HomePage> {
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          
+                          Get.to(ImageAnalyzerPage());
                         },
                         child: Text("Analisis Gambar"),
                       ),
                       ElevatedButton(
-                        onPressed: () {},
-                        child: Text("Diagnosa dengan suara"),
+                        onPressed: () {
+                          Get.to(DiagnoseWithVoicePage());
+                        },
+                        child: Text("AI Diagnose Consultation"),
                       ),
                       ElevatedButton(
                         onPressed: () {
                           Navigator.of(context).pushNamed("/chatpage");
                         },
                         child: Text("Customer Service"),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          Get.to(PseudoSpeechPage());
+                        },
+                        child: Text("Pseudo Text to Speech"),
                       ),
                     ],
                   ),

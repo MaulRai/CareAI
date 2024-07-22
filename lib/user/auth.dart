@@ -1,4 +1,4 @@
-import 'package:careai/dashboard.dart';
+import 'package:careai/homepage.dart';
 import 'package:careai/user/sign_in_page.dart';
 import 'package:careai/user/signup_empass_failure.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,7 +9,7 @@ class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
 
   final _auth = FirebaseAuth.instance;
-  late final Rx<User?> firebaseUser;
+  static late final Rx<User?> firebaseUser;
 
   @override
   void onReady() {
@@ -21,7 +21,7 @@ class AuthenticationRepository extends GetxController {
   _setInitialScreen(User? user) {
     user == null
         ? Get.offAll(() => const SignInPage())
-        : Get.offAll(() => const Dashboard());
+        : Get.offAll(() => const HomePage());
   }
 
   void createUserWithEmailAndPass(String email, String password) async {
@@ -30,15 +30,13 @@ class AuthenticationRepository extends GetxController {
       debugPrint("Done created User!");
       firebaseUser.value == null
         ? Get.to(() => const SignInPage())
-        : Get.offAll(() => const Dashboard());
+        : Get.offAll(() => const HomePage());
     } on FirebaseAuthException catch (e){
       final ex = SignUpWithEmailAndPassFailure.code(e.code);
       debugPrint("The firebase error is ${ex.message}");
-      throw ex;
     } catch (_){
       final ex = SignUpWithEmailAndPassFailure();
       debugPrint("The error is ${ex.message}");
-      throw ex;
     }
   }
 
